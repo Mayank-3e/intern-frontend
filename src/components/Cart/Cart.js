@@ -3,10 +3,15 @@ import CartItem from './CartItem';
 import classes from './Cart.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/cart';
+import Checkout from './Checkout';
+import { useState } from 'react';
 
 const Cart = (props) =>
 {
   const dispatch=useDispatch()
+  const [isCheckout, setIsCheckout] = useState(false)
+  // Order sent
+  const [didSubmit, setDidSubmit] = useState(false)
   const cart=useSelector(state => state)
 
   const totalAmount = `$${cart.totalAmount}`;
@@ -30,13 +35,14 @@ const Cart = (props) =>
     </ul>
   );
 
+  // Close & Order buttons
   const modalActions = (
     <div className={classes.actions}>
       <button className={classes['button--alt']} onClick={props.onClose}>
         Close
       </button>
       {hasItems && (
-        <button className={classes.button}>
+        <button className={classes.button} onClick={() => setIsCheckout(true)}>
           Order
         </button>
       )}
@@ -50,13 +56,28 @@ const Cart = (props) =>
         <span>Total Amount</span>
         <span>{totalAmount}</span>
       </div>
-      {modalActions}
+      {isCheckout && (
+        <Checkout onCancel={props.onClose} setDidSubmit={setDidSubmit}/>
+      )}
+      {!isCheckout && modalActions}
     </div>
   )
 
+  const didSubmitModalContent = (
+    <>
+      <p>Successfully sent the order!</p>
+      <div className={classes.actions}>
+      <button className={classes.button} onClick={props.onClose}>
+        Close
+      </button>
+    </div>
+    </>
+  );
+
   return (
     <Modal onClose={props.onClose}>
-      {cartModalContent}
+      {!didSubmit && cartModalContent}
+      {didSubmit && didSubmitModalContent}
     </Modal>
   );
 };
