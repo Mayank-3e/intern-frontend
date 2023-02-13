@@ -1,9 +1,21 @@
 import MealItemForm from './MealItemForm';
 import classes from './MealItem.module.css'
+import { useDispatch } from 'react-redux';
+import { cartActions } from '../../../store/cart';
 
 const MealItem = (props) =>
 {
-  const price = `$${props.price}`
+  const dispatch=useDispatch()
+  const price = `$${props.price}`;
+
+  const addToCartHandler = amount => {
+    dispatch(cartActions.addItem({
+      id: props.id,
+      name: props.name,
+      amount: amount,
+      price: props.price
+    }));
+  };
 
   return (
     <li className={classes.meal}>
@@ -13,7 +25,7 @@ const MealItem = (props) =>
         <div className={classes.price}>{price}</div>
       </div>
       <div>
-        <MealItemForm onAddToCart={{}} />
+        <MealItemForm onAddToCart={addToCartHandler} />
       </div>
     </li>
   );
