@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
 import Header from "./Header";
+import Cart from "../Cart/Cart";
 
 const RootLayout = () =>
 {
@@ -10,6 +11,7 @@ const RootLayout = () =>
 
     return (
         <>
+            {cartIsShown && <Cart onClose={hideCartHandler} />}
             <Header onShowCart={showCartHandler} />
             <Outlet/>
         </>
