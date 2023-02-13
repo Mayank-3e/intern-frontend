@@ -42,6 +42,9 @@
 .actions button:active {
   background-color: #ffe6dc;
 }
+.actions button:disabled {
+  background-color: gray;
+}
 
 .actions .submit {
   border: 1px solid #5a1a01;
