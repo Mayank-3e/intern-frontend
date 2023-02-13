@@ -1,6 +1,7 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './components/Layout/Root'
 import Meals from './components/Meals/Meals';
+import Orders from './components/Orders';
 
 const router=createBrowserRouter(
   [
@@ -9,7 +10,8 @@ const router=createBrowserRouter(
       element: <RootLayout/>,
       children:
       [
-        {index: true, element: <Meals/>}
+        {index: true, element: <Meals/>},
+        {path: 'orders', element: <Orders/>}
       ]
     }
   ]
