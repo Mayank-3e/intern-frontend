@@ -58,7 +58,13 @@
   margin: 0.25rem;
 }
 
-.cart-item button:hover,
+@media (hover:hover) {
+  .cart-item button:hover {
+    background-color: #8a2b06;
+    color: white;
+  }
+}
+
 .cart-item button:active {
   background-color: #8a2b06;
   color: white;

@@ -38,7 +38,24 @@
   padding: 0.5rem 2rem; 
 }
 
-.actions button:hover,
+@media(hover:hover) {
+  .actions button:hover {
+    background-color: #ffe6dc;
+  }
+  .actions .submit:hover {
+    background-color: #7a2706;
+  }
+}
+
+@media(hover:none) {
+  .actions button {
+    background-color: #ffe6dc;
+  }
+  .actions button:active {
+    border: 2px solid #5a1a01;
+  }
+}
+
 .actions button:active {
   background-color: #ffe6dc;
 }
@@ -52,7 +69,6 @@
   color: white;
 }
 
-.actions .submit:hover,
 .actions .submit:active {
   background-color: #7a2706;
 }

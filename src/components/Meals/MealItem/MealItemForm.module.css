@@ -13,8 +13,14 @@
   font-weight: bold;
 }
 
-.form button:hover,
 .form button:active {
   background-color: #641e03;
   border-color: #641e03;
+}
+
+@media(hover:hover) {
+  .form button:hover {
+    background-color: #641e03;
+    border-color: #641e03;
+  }
 }
