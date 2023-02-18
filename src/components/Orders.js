@@ -9,6 +9,7 @@ const Orders = () =>
     return (
     <section>
       <Card>
+        {!orders.length && <h3>No Orders!</h3>}
         {orders.map(order =>
         <li className={classes.meal} key={order.id}>
             <div>

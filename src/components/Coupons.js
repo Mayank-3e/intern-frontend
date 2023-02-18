@@ -9,6 +9,7 @@ const Coupons = () =>
     return (
     <section>
       <Card>
+        {!coupons.length && <h3>No Coupons!</h3>}
         {coupons.map(coupon =>
         <li className={classes.meal} key={coupon.id}>
             <div>
