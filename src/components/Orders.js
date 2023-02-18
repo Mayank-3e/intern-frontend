@@ -1,31 +1,14 @@
-import { useEffect, useState } from "react"
 import Card from './UI/Card'
 import classes from './Orders.module.css'
+import { useLoaderData } from 'react-router-dom'
 
 const Orders = () =>
 {
-    const [orders,setOrders]=useState([])
-    const [loading,setLoading]=useState(false)
-
-    useEffect(()=>
-    {
-        async function loader()
-        {
-            setLoading(true)
-            const response = await fetch(process.env.REACT_APP_API)
-            const data=await response.json()
-            // console.log(data)
-            setLoading(false)
-            setOrders(data.orders)
-        }
-        loader()
-    },[])
+    const orders=useLoaderData().orders
 
     return (
     <section>
       <Card>
-        {loading && <p>Loading...</p>}
-        {!orders.length && <h3>No orders!</h3>}
         {orders.map(order =>
         <li className={classes.meal} key={order.id}>
             <div>
@@ -44,3 +27,5 @@ const Orders = () =>
     )
 }
 export default Orders
+
+export const loader= ()=> fetch(process.env.REACT_APP_API)
